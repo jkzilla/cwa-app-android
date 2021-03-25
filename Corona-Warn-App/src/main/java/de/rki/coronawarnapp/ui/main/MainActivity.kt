@@ -108,6 +108,18 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector {
             startNestedGraphDestination(navController, isOnboardingDone)
         }
 
+        vm.activeCheckIns.observe(this) { count ->
+            val targetId = R.id.trace_location_attendee_nav_graph
+            binding.mainBottomNavigation.apply {
+                if (count > 0) {
+                    val badge = getOrCreateBadge(targetId)
+                    badge.number = count
+                } else {
+                    removeBadge(targetId)
+                }
+            }
+        }
+
         if (savedInstanceState == null) {
             processExtraParameters()
         }
