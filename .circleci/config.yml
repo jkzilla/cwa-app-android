@@ -38,7 +38,7 @@ jobs:
   test:
     executor:
       name: android/android-machine
-    parallelism: 10
+    parallelism: 4
     steps:
       - use-cached-ndk:
           ndk-version: "21.4.7075529"
