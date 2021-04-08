@@ -34,7 +34,7 @@ commands:
           key: << parameters.cache-prefix>>-{{ arch }}-<<parameters.ndk-version>>
           paths:
             - <<parameters.android-ndk-root-path>>/<<parameters.ndk-version>>
-jobs:
+jobs: 
   test:
     executor:
       name: android/android-machine
