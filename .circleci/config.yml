@@ -35,12 +35,12 @@ commands:
           paths:
             - <<parameters.android-ndk-root-path>>/<<parameters.ndk-version>>
 jobs:
-  test: 
+  test:
     executor:
       name: android/android-machine
       resource-class: medium
     parallelism: 2
-    steps:
+    steps: 
       - use-cached-ndk:
           ndk-version: "21.4.7075529"
 
