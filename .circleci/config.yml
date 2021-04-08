@@ -16,11 +16,20 @@ commands:
         type: string
         default: v1
     steps:
+      - run:
+          name: install pigz
+          command: sudo apt update && sudo apt install pigz
       - restore_cache:
           name: Restore NDK <<parameters.ndk-version>> cache
           key: <<parameters.cache-prefix>>-{{ arch }}-<<parameters.ndk-version>>
           paths:
             - <<parameters.android-ndk-root-path>>/<<parameters.ndk-version>>
+      - run:
+          command: |
+            if [ -f ndk.tar.gz ]; then
+              tar xvf ndk.tar.gz --use-compress-prog=pigz
+              mv opt/android/sdk/ndk/<<parameters.ndk-version>> /opt/android/sdk/ndk/<<parameters.ndk-version>>
+            fi
       - run:
           name: Download ndk version for caching if not exists
           command: |
@@ -29,6 +38,7 @@ commands:
                 echo "Download NDK version for caching"
                 sdkmanager "ndk;<<parameters.ndk-version>>"
             fi
+      - run: tar cv --use-compress-program pigz -f ndk.tar.gz /opt/android/sdk/ndk/<<parameters.ndk-version>>
       - save_cache:
           name: Save NDK <<parameters.ndk-version>> cache
           key: << parameters.cache-prefix>>-{{ arch }}-<<parameters.ndk-version>>
