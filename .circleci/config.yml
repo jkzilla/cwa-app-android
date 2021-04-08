@@ -46,8 +46,8 @@ commands:
             - <<parameters.android-ndk-root-path>>/<<parameters.ndk-version>>
 jobs:
   test:
-    executor:
-      name: android/android-machine 
+    executor: 
+      name: android/android-machine
       resource-class: medium
     parallelism: 2
     steps:
