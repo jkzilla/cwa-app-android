@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  android: circleci/android@1.0.3
+  android: circleci/android@1.0
 commands:
   use-cached-ndk:
     parameters:
@@ -42,7 +42,7 @@ jobs:
     parallelism: 2
     steps:
       - use-cached-ndk:
-          ndk-version: "21.4.7075529"
+          ndk-version: "22.1.7171670"
 
 workflows:
   build:
