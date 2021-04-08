@@ -47,7 +47,7 @@ commands:
 jobs:
   test:
     executor:
-      name: android/android-machine
+      name: android/android-machine 
       resource-class: medium
     parallelism: 2
     steps:
