@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  android: circleci/android@1.0
+  android: circleci/android@1.0.3
 commands:
   use-cached-ndk:
     parameters:
@@ -46,9 +46,9 @@ commands:
             - <<parameters.android-ndk-root-path>>/<<parameters.ndk-version>>
 jobs:
   test:
-    executor:
-      name: android/android-machine
-      resource-class: medium
+    machine:
+      image: ubuntu-2004:202101-01
+    resource_class: arm.medium
     parallelism: 2
     steps:
       - use-cached-ndk:
